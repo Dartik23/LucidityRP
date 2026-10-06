@@ -1,160 +1,179 @@
-/* ========================= */
-/* RESET */
-/* ========================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* --- Globální proměnné pro Vice City / 80s Miami Vibe --- */
+:root {
+    --bg-color: #0b091a;        /* Hluboká temně fialová/černá noční obloha */
+    --card-bg: rgba(20, 16, 43, 0.85); /* Poloprůhledné tmavé pozadí pro karty */
+    --neon-pink: #ff2a8d;       /* Zářivá 80s růžová / magenta */
+    --neon-blue: #00f0ff;       /* Elektrická neonově modrá / cyan */
+    --neon-yellow: #ffe600;     /* Žlutá slunce z Miami */
+    --text-color: #f1f1f1;      /* Světlá barva textu */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ========================= */
-/* BODY */
-/* ========================= */
-
+/* --- Základní nastavení --- */
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #000;
-  color: #ddd;
-  line-height: 1.6;
+    background-color: var(--bg-color);
+    /* Jemný přechod (gradient) na pozadí připomínající západ slunce v Miami */
+    background-image: linear-gradient(135deg, #0b091a 0%, #1a0b2e 50%, #0b1a2e 100%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
 
-/* ========================= */
-/* HEADER */
-/* ========================= */
-
+/* --- Horní lišta (Header & Navigation) --- */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #111;
-  padding: 15px 40px;
-  border-bottom: 2px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11, 9, 26, 0.95);
+    border-bottom: 2px solid var(--neon-pink);
+    box-shadow: 0 0 15px rgba(255, 42, 141, 0.3);
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
-
-/* ========================= */
-/* LOGO */
-/* ========================= */
 
 .logo img {
-  height: 70px;
+    height: 45px;
+    filter: drop-shadow(0 0 8px var(--neon-blue));
 }
-
-/* ========================= */
-/* NAVIGACE */
-/* ========================= */
 
 nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  padding: 8px 12px;
+nav a, .dropbtn {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-nav a:hover {
-  color: #ff0000;
+nav a:hover, .dropbtn:hover {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
 }
 
-/* ========================= */
-/* DROPDOWN */
-/* ========================= */
-
+/* --- Dropdown menu --- */
 .dropdown {
-  position: relative;
-}
-
-.dropbtn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px 12px;
-}
-
-.dropbtn:hover {
-  color: #ff0000;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #111;
-  min-width: 200px;
-  border: 1px solid #333;
-  z-index: 10;
+    display: none;
+    position: absolute;
+    background-color: var(--card-bg);
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    border: 1px solid var(--neon-blue);
+    border-radius: 6px;
+    z-index: 1;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
 }
 
 .dropdown-content a {
-  display: block;
-  padding: 10px;
-  color: #fff;
-  text-decoration: none;
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s, color 0.2s;
 }
 
 .dropdown-content a:hover {
-  background-color: #ff0000;
+    background: linear-gradient(90deg, rgba(255, 42, 141, 0.2), transparent);
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px var(--neon-yellow);
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.dropdown.active .dropdown-content {
+    display: block;
 }
 
-/* ========================= */
-/* OBSAH */
-/* ========================= */
-
+/* --- Hlavní kontejner obsahu --- */
 .container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.1), inset 0 0 15px rgba(255, 42, 141, 0.05);
+    backdrop-filter: blur(5px);
+    animation: slideUp 0.6s ease-out;
 }
 
-/* ========================= */
-/* RULE BOX */
-/* ========================= */
-
-.rule-box {
-  background-color: #1a1a1a;
-  border: 1px solid #444;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 6px;
+/* Nadpisy s neonovým přechodem */
+h1, h2 {
+    font-family: 'Impact', 'Segoe UI', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.rule-box h2 {
-  color: #ff0000;
-  margin-bottom: 10px;
+h1 {
+    font-size: 2.5rem;
+    /* Prolínání barev v textu (Gradient text) */
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(255, 42, 141, 0.4));
+    margin-bottom: 20px;
 }
 
-.rule-box p {
-  color: #ccc;
-  margin-bottom: 10px;
+p {
+    color: #d0d0d5;
+    font-size: 1.1rem;
 }
 
-.rule-box ul {
-  margin-left: 20px;
-}
-
-.rule-box li {
-  color: #ddd;
-  margin-bottom: 5px;
-}
-
-/* ========================= */
-/* FOOTER */
-/* ========================= */
-
+/* --- Patička --- */
 footer {
-  text-align: center;
-  padding: 30px;
-  border-top: 1px solid #333;
-  margin-top: 40px;
-  color: #777;
+    text-align: center;
+    padding: 30px;
+    color: #888899;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 42, 141, 0.2);
+    margin-top: 80px;
 }
+
+/* --- Animace --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+```[cite: 1]
+
+---
+
+### Co je potřeba ještě upravit v HTML souborech?
+
+1. **Změna názvu z CrimeRP na Lucidity / LucidityRP:**
+   Všude v HTML souborech (`index.html`, `faq.html` atd.) v tagu `<title>` a v hlavičce `<h1>` přepiš text z `CrimeRP` na `Lucidity RP`.
+   * *Příklad pro `index.html`:*
+     ```html
+     <title>Lucidity RP</title>
+     ...
+     <h1>Vítejte na Lucidity RP</h1>
+     <p>Lucidity RP je žhavý GTA V FiveM server s atmosférou 80. let...</p>
+     ```[cite: 1]
+
+2. **Logo:**
+   Ujisti se, že ve složce `assets/` máš nové logo a že cesta v HTML (`src="assets/logo.png"`) na něj správně ukazuje[cite: 1]. Díky novému CSS bude logo automaticky doplněno jemnou modrou neonovou září (`drop-shadow`).
+
+Jakmile tyhle změny (nový `style.css` a přepsání textů v HTML) nahraješ na svůj GitHub, web okamžitě ožije barvami Miami, chytí 80s vibe a bude vypadat neskutečně stylově!
